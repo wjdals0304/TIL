@@ -147,16 +147,15 @@ match는 암호화된 인증서와 프로비저닝 프로파일을 Git 저장소
 저장소는 비공개로 유지되며, 암호로 보호됩니다.
 ```
 - Github action 의 특정 트리거로  Fastlane 실행 
+
+### Fastlane 
 ```
 APP_STORE_CONNECT_API_KEY_KEY_ID = ENV["APP_STORE_CONNECT_API_KEY_KEY_ID"]
 APP_STORE_CONNECT_API_KEY_ISSUER_ID = ENV["APP_STORE_CONNECT_API_KEY_ISSUER_ID"]
 APP_STORE_CONNECT_API_KEY_KEY =  ENV["APP_STORE_CONNECT_API_KEY_KEY"]
 KEYCHAIN_NAME = ENV["KEYCHAIN_NAME"]
 KEYCHAIN_PASSWORD = ENV["KEYCHAIN_PASSWORD"]
-```
 
-### Fastlane 
-```
 default_platform(:ios)
 platform :ios do
   #슬랙URL
