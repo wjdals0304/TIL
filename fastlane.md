@@ -139,7 +139,7 @@ jobs:
 ### Match 인증 방식 
 - https://docs.fastlane.tools/actions/match/  
 - fastlane  코드 서명과 프로비저닝 프로파일 관리를 자동화하는 도구 
-- https://github.com/walkmining/fastlane-certificate 
+- 인증서를 보관할 Github 저장소를 만들어 보관하여 관리한다.
 ```
 Git 저장소 기반 인증: 
 match는 암호화된 인증서와 프로비저닝 프로파일을 Git 저장소에 저장합니다.
