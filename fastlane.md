@@ -137,17 +137,16 @@ jobs:
 ```
 
 ### Match 인증 방식 
-
-https://docs.fastlane.tools/actions/match/  
-fastlane  코드 서명과 프로비저닝 프로파일 관리를 자동화하는 도구 
-https://github.com/walkmining/fastlane-certificate 
-
+- https://docs.fastlane.tools/actions/match/  
+- fastlane  코드 서명과 프로비저닝 프로파일 관리를 자동화하는 도구 
+- https://github.com/walkmining/fastlane-certificate 
+```
 Git 저장소 기반 인증: 
 match는 암호화된 인증서와 프로비저닝 프로파일을 Git 저장소에 저장합니다.
 팀원들은 이 저장소에 접근하여 필요한 인증서를 공유할 수 있습니다.
 저장소는 비공개로 유지되며, 암호로 보호됩니다.
-
-Github action 의 특정 트리거로  Fastlane 실행 
+```
+- Github action 의 특정 트리거로  Fastlane 실행 
 ```
 APP_STORE_CONNECT_API_KEY_KEY_ID = ENV["APP_STORE_CONNECT_API_KEY_KEY_ID"]
 APP_STORE_CONNECT_API_KEY_ISSUER_ID = ENV["APP_STORE_CONNECT_API_KEY_ISSUER_ID"]
@@ -168,12 +167,11 @@ platform :ios do
   # Debug 버전 빌드/배포
   lane :debug do
      begin
-     
      # SwiftGen 실행
      project_root = File.expand_path('..', Dir.pwd)
      swiftgen_path = File.join(project_root, 'Pods', 'SwiftGen', 'bin', 'swiftgen')
      config_path = File.join(project_root, 'swiftgen.yml')
-  
+
      if File.exist?(swiftgen_path) && File.exist?(config_path)
        sh("#{swiftgen_path} config run --config #{config_path}")
      else
@@ -200,8 +198,8 @@ platform :ios do
      )
      
      # 빌드번호 생성
-     new_build_number = latest_testflight_build_number(api_key: api_key, app_identifier: "com.dw.walkmining.debug") + 1
-     version = get_version_number(target:"Walkmining") + "(" + "#{new_build_number}" + ")"
+     new_build_number = latest_testflight_build_number(api_key: api_key, app_identifier: "com.*.debug") + 1
+     version = get_version_number(target:"*") + "(" + "#{new_build_number}" + ")"
      
      # 빌드 Increment
      increment_build_number(
@@ -211,29 +209,29 @@ platform :ios do
      # signing 세팅
      update_code_signing_settings(
        use_automatic_signing: false,  # 자동 서명 사용 안함
-       team_id: "RBFRAWL2VK",  # 팀 ID
+       team_id: "*",  # 팀 ID
        targets: [
          {
-          target: "Walkmining Debug",  # 첫 번째 타겟 이름
+          target: "* Debug",  # 첫 번째 타겟 이름
           build_configuration: "Debug",
           code_sign_identity: "Apple Distribution",
-          profile_name: "match AppStore com.dw.walkmining.debug"
+          profile_name: "match AppStore com.*.debug"
          },
         {
           target: "OneSignalNotificationServiceExtension",  # 두 번째 타겟 이름
           build_configuration: "Debug",
           code_sign_identity: "Apple Distribution",
-          profile_name: "match AppStore com.dw.walkmining.debug.OneSignalNotificationServiceExtension"
+          profile_name: "match AppStore com.*.debug.OneSignalNotificationServiceExtension"
         }
       ]
     )
     sync_code_signing(type: "appstore",
-                    app_identifier: ["com.dw.walkmining.debug","com.dw.walkmining.debug.OneSignalNotificationServiceExtension"],
+                    app_identifier: ["com.*.debug","com.*.OneSignalNotificationServiceExtension"],
                     readonly: true
      )
      # 인증서 발급
      match(type: "appstore",
-           app_identifier: ["com.dw.walkmining.debug","com.dw.walkmining.debug.OneSignalNotificationServiceExtension"],
+           app_identifier: ["com.*.debug","com.*.debug.OneSignalNotificationServiceExtension"],
            readonly: true,
            force_for_new_devices: true,
            keychain_name: "#{KEYCHAIN_NAME}",
@@ -251,13 +249,13 @@ platform :ios do
      )
      
      gym(
-        workspace: "Walkmining.xcworkspace",
-        scheme: "Walkmining Debug",
+        workspace: "*.xcworkspace",
+        scheme: "* Debug",
         export_method: "app-store",
         export_options: {
             provisioningProfiles: {
-            "com.dw.walkmining.debug" => "match AppStore com.dw.walkmining.debug",
-            "com.dw.walkmining.debug.OneSignalNotificationServiceExtension" => "match AppStore com.dw.walkmining.debug.OneSignalNotificationServiceExtension"
+            "com.*.debug" => "match AppStore com.*.debug",
+            "com.*.debug.OneSignalNotificationServiceExtension" => "match AppStore com.*.debug.OneSignalNotificationServiceExtension"
           }
         }
       )
@@ -269,15 +267,13 @@ platform :ios do
      )
      
      # Dsyms 업로드
-     download_dsyms(version: "latest")
-     UPLOAD_SYMBOLS_PATH=`xcodebuild -project ./Walkmining.xcodeproj -showBuildSettings | grep -m 1 "BUILD_DIR" | grep -oEi "\/.*" | sed 's:Build/Products:SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/upload-symbols:' | tr -d '\n'`
      upload_symbols_to_crashlytics(
-          gsp_path: "./Walkmining/Resources/Firebase/GoogleService-Info-dev.plist",
-          binary_path: UPLOAD_SYMBOLS_PATH
+          gsp_path: "./*/Resources/Firebase/GoogleService-Info-dev.plist",
+          binary_path: "./Pods/FirebaseCrashlytics/upload-symbols"
        )
        
      clean_build_artifacts
-     
+
      slack(
             message: "iOS Debug TestFlight 업로드 완료 :tada:",
             payload: {
@@ -285,6 +281,13 @@ platform :ios do
             }
      )
      
+    rescue => ex
+      slack(
+        message: ex.message,
+        success: false
+      )
+    end
+  end
     rescue => ex
       slack(
         message: ex.message,
