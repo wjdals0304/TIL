@@ -1,8 +1,9 @@
 Fastlane 설치 및 운영법에 대한 설명 
 
-Github Actions + Fastlane 으로 iOS 배포 자동화에 대한 글을 작성한다. 
+Github Actions + Fastlane 으로 깃허브 특정 트리거 조건으로 iOS 배포 자동화에 대한 글을 작성한다. 
 
-## Fastlane 설정 
+## Fastlane 설정
+- fastlane 명령어로 앱 배포
 ```
 brew install fastlane // 설치
 fastlane init
