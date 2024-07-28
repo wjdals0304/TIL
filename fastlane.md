@@ -60,11 +60,11 @@ end
 
 appleid.apple.com 에서 앱 암호를 생성하여 로컬에 저장 후 사용하는 방식 
 fastlane 2FA 인증으로 .env 파일을 생성
-
+```
 FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD=""
 FASTLANE_SESSION=""
 FASTLANE_ITC_TEAM_NAME=""
-
+```
 ### Fastlane 실행 
 ```
 fastlane [정의한 lane 이름]
