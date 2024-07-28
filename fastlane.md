@@ -38,17 +38,18 @@ platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :debug do
      begin
+      ## 빌드 넘버 증가
       increment_build_number(xcodeproj: "*.xcodeproj")
-
+      ## 빌드 
       build_app(workspace: "*.xcworkspace", scheme: "* Debug")
+      ## 테스트플라이트 업로드 
       upload_to_testflight(
         skip_waiting_for_build_processing: true
       )
-      UPLOAD_SYMBOLS_PATH=`xcodebuild -project ./*.xcodeproj -showBuildSettings | grep -m 1 "BUILD_DIR" | grep -oEi "\/.*" | sed 's:Build/Products:SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/upload-symbols:' | tr -d '\n'`
-   
+      ## 파이어베이스 크래쉬틱스 Dsym 파일 업로드 
       upload_symbols_to_crashlytics(
         gsp_path: "./*/Firebase/GoogleService-Info-dev.plist",
-          binary_path: UPLOAD_SYMBOLS_PATH
+          binary_path: "./Pods/FirebaseCrashlytics/upload-symbols"
        )
       clean_build_artifacts
     rescue => ex
