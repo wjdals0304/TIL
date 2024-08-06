@@ -4,7 +4,7 @@
 - 기본적으로 Private 선언이기에 다른 뷰와 값을 소통하려면 Binding 을 이용 
 - 값이 변경될 때마다 UI 업데이트 
 
-```
+```swift
 import SwiftUI
 
 struct CounterView: View {
@@ -36,7 +36,7 @@ Text 뷰에서 현재 카운트 값을 표시합니다.
 - 뷰와 상태를 바인딩하는 방법
 - 상위 @State 변수를 전달 받아 하위 뷰에서 캐치해 변화 감지 및 연결
 - Binding 은 다른 뷰가 소유한 속성을 연결하기에 소유권 및 저장 공간이 없음 
-```
+```swift
 import SwiftUI
 
 struct ParentView: View {
@@ -71,7 +71,7 @@ ToggleView에서 상태를 변경하면 ParentView의 상태도 자동으로 업
 - @Published 프로퍼티 래퍼를 사용하여 변경 사항을 자동으로 발행합니다.
 - 뷰에서 @ObservedObject 또는 @StateObject로 사용될 수 있습니다.
 
-```
+```swift
 import SwiftUI
 
 class UserSettings: ObservableObject {
@@ -123,7 +123,7 @@ ContentView에서 @StateObject를 사용하여 UserSettings 인스턴스를 생�
 ## @ObservableObject 
 - 뷰에서 ObservableObject 타입의 인스턴스 선언 시 사용
 - ObservableObject의 값이 업데이트되면 뷰를 업데이트
-```
+```swift
 import SwiftUI
 import Combine
 
@@ -176,7 +176,7 @@ ObservableObject는 주로 @ObservedObject나 @StateObject와 함께 사용됩�
 - @ObservedObject의 뷰 렌더링 시 인스턴스 초기화 이슈 해결을 위한 방법 
 - 매번 인스턴스가 새롭게 생성되는것처럼 외부에서 주입 받는 경우가 아닌 
 최초 생성 선언 시에 @StateObject를 사용하는것이 적절한 방법 
-```
+```swift
 import SwiftUI
 
 class CounterModel: ObservableObject {
