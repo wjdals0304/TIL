@@ -120,7 +120,7 @@ ContentView에서 @StateObject를 사용하여 UserSettings 인스턴스를 생�
 - @Published로 선언된 프로퍼티를 뷰에서 관찰할 수 있음 
 - ObservableObject의 objectWillChange.send() 기능을 @Published 프로퍼티가 변경되면 자동으로 호출 
 
-## @ObservableObject 
+## @ObservedObject 
 - 뷰에서 ObservableObject 타입의 인스턴스 선언 시 사용
 - ObservableObject의 값이 업데이트되면 뷰를 업데이트
 ```swift
