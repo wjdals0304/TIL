@@ -7,5 +7,7 @@
 - [Driver](https://github.com/wjdals0304/TIL/blob/main/RxSwift_Driver.md)
 - [PublishRelay](https://github.com/wjdals0304/TIL/blob/main/RxSwift_PublishRelay.md)
 - [BehaviorRelay](https://github.com/wjdals0304/TIL/blob/main/%08RxSwift_BehaviorRelay.md)
+- [BehaviorSubject](https://github.com/wjdals0304/TIL/blob/main/RxSwift_BehaviorSubject.md)
+- [PublishSubject](https://github.com/wjdals0304/TIL/blob/main/Rxswift_PublishSubject.md)
 ## CI/CD
 - [Fastlane](https://github.com/wjdals0304/TIL/blob/main/fastlane.md)
