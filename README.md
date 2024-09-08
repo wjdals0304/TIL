@@ -1,6 +1,9 @@
 # TIL
 ## Swift 
 - [DispatchGroup](https://github.com/wjdals0304/TIL/blob/main/swift_dispatchgroup.md)
+- [layoutIfNeeded](https://github.com/wjdals0304/TIL/blob/main/swift_layoutIfNeeded.md)
+- [layoutSubViews](https://github.com/wjdals0304/TIL/blob/main/swift_layoutSubviews.md)
+- [setNeedsLayout](https://github.com/wjdals0304/TIL/blob/main/%08swift_setneedslayout.md)
 ## SwiftUI 
 - [Property_Wrappers](https://github.com/wjdals0304/TIL/blob/main/swiftui_property_wrappers.md)
 ## RxSwift 
