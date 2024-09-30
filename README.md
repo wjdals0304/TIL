@@ -4,6 +4,8 @@
 - [layoutIfNeeded](https://github.com/wjdals0304/TIL/blob/main/swift_layoutIfNeeded.md)
 - [layoutSubViews](https://github.com/wjdals0304/TIL/blob/main/swift_layoutSubviews.md)
 - [setNeedsLayout](https://github.com/wjdals0304/TIL/blob/main/%08swift_setneedslayout.md)
+- [GCD](https://github.com/wjdals0304/TIL/blob/main/Swift_GCD.md)
+- [Concurrency](https://github.com/wjdals0304/TIL/blob/main/Swift_Concurrency.md) 
 ## SwiftUI 
 - [Property_Wrappers](https://github.com/wjdals0304/TIL/blob/main/swiftui_property_wrappers.md)
 ## RxSwift 
