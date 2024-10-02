@@ -1,4 +1,6 @@
 # TIL
+## iOS 
+- [App_State](https://github.com/wjdals0304/TIL/blob/main/ios_app_states.md)
 ## Swift 
 - [DispatchGroup](https://github.com/wjdals0304/TIL/blob/main/swift_dispatchgroup.md)
 - [layoutIfNeeded](https://github.com/wjdals0304/TIL/blob/main/swift_layoutIfNeeded.md)
