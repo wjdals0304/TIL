@@ -18,5 +18,7 @@
 - [BehaviorSubject](https://github.com/wjdals0304/TIL/blob/main/RxSwift_BehaviorSubject.md)
 - [PublishSubject](https://github.com/wjdals0304/TIL/blob/main/Rxswift_PublishSubject.md)
 - [drive vs subsribe vs bind](https://github.com/wjdals0304/TIL/blob/main/rxswift_bind_subscribe_driver.md) 
+## Architecture 
+- [Solid 원칙](https://github.com/wjdals0304/TIL/blob/main/architecture_solid.md)
 ## CI/CD
 - [Fastlane](https://github.com/wjdals0304/TIL/blob/main/fastlane.md)
