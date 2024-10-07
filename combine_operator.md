@@ -26,36 +26,61 @@ publisher.tryMap { value in
 ### 3. FlatMap 
 - Upstream Publisher 에서 오는 값들을 새로운 Publisher 로 변환하는 Publisher
 ```swift
-struct User { let id: Int }
+let intPublisher = [1,2,3].publisher
+let stringPublisher = ["A","B","C"].publisher
 
-func fetchUserDetails(for user: User) -> AnyPublisher<String, Never> {
-    // 사용자 상세 정보를 비동기적으로 가져오는 퍼블리셔
-    return Just("User \(user.id) details").eraseToAnyPublisher()
-}
+intPublisher
+ .flatMap { intValue in
+   stringPublisher.map { "\(intValue)\($0)" }
+ }.sink { value in
+    print("Received value: \(value)" )
+ }
 
-let users = [User(id: 1), User(id: 2), User(id: 3)].publisher
-
-users
-    .flatMap { user in
-        fetchUserDetails(for: user)
-    }
-    .sink { print($0) }
-
-// 출력:
-// User 1 details
-// User 2 details
+Received value: 1A
+Received value: 1B
+Received value: 1C
+Received value: 2A
 ```
 
 ## 필터 연산자
 
 ### 1. Filter 
 - 클로저의 조건과 일치하는 값을 발행하는 Publisher
+```swift
+let numbers = [1, 2, 3, 4, 5, 6].publisher
+
+numbers
+    .filter { $0 % 2 == 0 }
+    .sink { print($0) }
+
+// 출력: 2, 4, 6
+```
 
 ### 2. CompactMap 
 - 클로저에서 nil 이 아닌 값을 발행하는 Publisher
+```swift
+let numbers = ["1", "2", "three", "4", "5"].publisher
+
+numbers
+    .compactMap { Int($0) }
+    .sink { print($0) }
+
+// 출력: 1, 2, 4, 5
+```
 
 ## 조합 연산자 
 
 ### 1. Zip 
 - 두개 이상의 Upstream Publisher 로부터 나온 값을 받아 조합하고 그 값을 방출해주는 Publisher
+```swift
+let numbers = [1, 2, 3].publisher
+let letters = ["A", "B", "C"].publisher
 
+numbers.zip(letters)
+    .sink { print("\($0): \($1)") }
+
+// 출력:
+// 1: A
+// 2: B
+// 3: C
+```
