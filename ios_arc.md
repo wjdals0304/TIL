@@ -56,11 +56,11 @@ unit4A?.tenant = john      // Person RC: 2
 // nil 할당해도 메모리 해제 안됨
 john = nil     // Person RC: 1
 unit4A = nil   // Apartment RC: 1
-```
+
 - weak var tenant: Person?  // weak로 변경하여 해결
 - weak: 참조 대상이 nil이 될 수 있는 경우
 - unowned: 참조 대상이 항상 존재한다고 확실할 때 
-
+```
 
 2. 클로저에서의 메모리 관리
 ```swift
