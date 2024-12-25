@@ -21,7 +21,6 @@
 - [drive vs subsribe vs bind](https://github.com/wjdals0304/TIL/blob/main/rxswift_bind_subscribe_driver.md)
 ## Combine 
 - [Publisher / Subcriber](https://github.com/wjdals0304/TIL/blob/main/combine_publisher_subscriber.md)
-- 
 ## Architecture 
 - [Solid 원칙](https://github.com/wjdals0304/TIL/blob/main/architecture_solid.md)
 ## CI/CD
