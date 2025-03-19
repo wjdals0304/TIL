@@ -26,7 +26,21 @@ React 애플리케이션에서 서버 상태를 효율적으로 관리할 수 �
 
 4. 데이터 프리페칭
 - prefetchQuery를 사용하여 페이지 이동 전에 데이터를 미리 가져올 수 있음
-
+```javascript
+   await queryClient.prefetchQuery({
+      queryKey: queryKeyCart,
+      queryFn: () =>
+        getRequest<CartResponse>({
+          url: API_ENDPOINTS.CART,
+          config: {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              Cookie: context.req.headers.cookie,
+            },
+          },
+        }).then(res => res.data),
+    });
+```
 
 ### fetchQuery vs prefetchQuery 차이점 
 1. fetchQuery
